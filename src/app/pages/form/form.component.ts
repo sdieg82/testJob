@@ -22,8 +22,8 @@ export class FormComponent {
   public newtask:EventEmitter<Task>=new EventEmitter();
 
   public task:Task={
-      task:'',
-      selectTask:''
+    task:'',
+    selectTask:'',
   }
   public myForm:FormGroup=this.fb.group({
     task:['',[Validators.required,Validators.minLength(6)]],
@@ -31,18 +31,13 @@ export class FormComponent {
   })
 
   submit():void{
-    this.task=this.myForm.value
-    this.newtask.emit(this.task)
+    this.newtask.emit(this.myForm.value)
     Swal.fire({
       title: 'Correcto!',
-      text: 'Tarea registrada correctamente',
+      text: 'Tarea registrada exitosamente !',
       icon: 'success',
       confirmButtonText: 'Ok'
     })
-    console.log('Este es el formulario que se envía',this.myForm.value)
+    this.myForm.reset()
   }
-
- 
-
-
 }
