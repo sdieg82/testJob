@@ -1,11 +1,8 @@
 <div class="row mt-2 bg-light bg-gradient">
-  <div class="col-6">
+  <div class="col-12 col-md-6 mb-3">
       <app-form (newtask)="newtask($event)"></app-form>
   </div>
-  <div class="col-6">
-  
-    <app-list [listTask]="tasks"></app-list>
+  <div class="col-12 col-md-6">
+      <app-list [listTask]="tasks"></app-list>
   </div>
-
 </div>
-

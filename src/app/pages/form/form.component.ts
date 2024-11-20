@@ -10,7 +10,6 @@ import { Task } from '../interfaces/task.interface';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-
   ],
   templateUrl: './form.component.html',
   styleUrl: './form.component.css'
@@ -20,11 +19,6 @@ export class FormComponent {
   
   @Output()
   public newtask:EventEmitter<Task>=new EventEmitter();
-
-  public task:Task={
-    task:'',
-    selectTask:'',
-  }
   public myForm:FormGroup=this.fb.group({
     task:['',[Validators.required,Validators.minLength(6)]],
     selectTask:['',[Validators.required]]
