@@ -1,0 +1,42 @@
+<h2>Ingrese una tarea</h2>
+<hr>
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+    <!-- Campo de nombre de tarea -->
+    <div class="mb-3">
+        <label for="taskName" class="form-label">Nombre de la Tarea</label>
+        <input 
+            type="text" 
+            id="taskName" 
+            class="form-control" 
+            placeholder="Ingrese una tarea"
+            formControlName="task"
+            [ngClass]="{'is-invalid': myForm.get('task')?.invalid && myForm.get('task')?.touched}"
+        >
+        <div *ngIf="myForm.get('task')?.invalid && myForm.get('task')?.touched" class="invalid-feedback">
+            Nombre de la tarea es requerido y debe tener al menos 6 caracteres.
+        </div>
+    </div>
+
+    <!-- Selección de estado de la tarea -->
+    <div class="mb-3">
+        <label for="taskStatus" class="form-label">Estado</label>
+        <select 
+            id="taskStatus" 
+            class="form-select form-control"
+            formControlName="selectTask"
+            [ngClass]="{'is-invalid': myForm.get('selectTask')?.invalid && myForm.get('selectTask')?.touched}"
+        >
+            <option value="" disabled>Seleccione el estado</option>
+            <option value="Completada">Completada</option>
+            <option value="Pendiente">Pendiente</option>
+        </select>
+        <div *ngIf="myForm.get('selectTask')?.invalid && myForm.get('selectTask')?.touched" class="invalid-feedback">
+            Debe seleccionar un estado.
+        </div>
+    </div>
+
+    <!-- Botón para ingresar tarea -->
+    <div class="text-center">
+        <button class="btn btn-primary w-100" [disabled]="myForm.invalid">Ingresar</button>
+    </div>
+</form>
