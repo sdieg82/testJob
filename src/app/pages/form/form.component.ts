@@ -31,6 +31,7 @@ export class FormComponent {
   })
 
   submit():void{
+    this.task=this.myForm.value
     this.newtask.emit(this.task)
     Swal.fire({
       title: 'Correcto!',
@@ -38,7 +39,7 @@ export class FormComponent {
       icon: 'success',
       confirmButtonText: 'Ok'
     })
-    console.log(this.myForm.value)
+    console.log('Este es el formulario que se envía',this.myForm.value)
   }
 
  

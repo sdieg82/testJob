@@ -24,5 +24,6 @@ export class AppComponent {
 
   newtask(task:Task):void{
     this.tasks.push(task)
+    console.log(this.tasks)
   }
 }
