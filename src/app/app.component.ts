@@ -4,6 +4,7 @@ import { RouterOutlet } from '@angular/router';
 import { FormComponent } from "./pages/form/form.component";
 import { ListComponent } from "./pages/list/list.component";
 import { Task } from './pages/interfaces/task.interface';
+import { TaskServiceService } from './pages/services/task-service.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,10 @@ import { Task } from './pages/interfaces/task.interface';
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+
+  constructor(private taskService:TaskServiceService){
+
+  }
   public tasks:Task[]=[{
     task:"Learn Angular",
     selectTask:"Completada"
@@ -25,5 +30,9 @@ export class AppComponent {
   newtask(task:Task):void{
     this.tasks.push(task)
     console.log(this.tasks)
+  }
+
+  deleteTask(id:number):void{
+    this.tasks.splice(id,1)
   }
 }

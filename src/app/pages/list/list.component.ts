@@ -15,4 +15,6 @@ export class ListComponent {
     task:"",
     selectTask:""
   }]
+
+ 
 }
