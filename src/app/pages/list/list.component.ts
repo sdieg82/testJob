@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { Task } from '../interfaces/task.interface';
+import { Component,EventEmitter,Input, Output } from '@angular/core';
+import { Task } from '../interfaces/Task.interface';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -10,11 +10,19 @@ import { CommonModule } from '@angular/common';
   styleUrl: './list.component.css'
 })
 export class ListComponent {
+
+  @Output()
+  public onDeleteTask:EventEmitter<number>=new EventEmitter()
+
   @Input()
   public listTask:Task[]=[{
     task:"",
     selectTask:""
   }]
+
+  deleteTask(id:number):void{
+    this.onDeleteTask.emit(id)
+  }
 
  
 }

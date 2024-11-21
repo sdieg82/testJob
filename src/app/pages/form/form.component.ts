@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup,ReactiveFormsModule, Validators } from '@angular/forms';
 import Swal from 'sweetalert2'
-import { Task } from '../interfaces/task.interface';
+import { Task } from '../interfaces/Task.interface';
 
 
 @Component({

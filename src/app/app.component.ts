@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { FormComponent } from "./pages/form/form.component";
 import { ListComponent } from "./pages/list/list.component";
-import { Task } from './pages/interfaces/task.interface';
+import { Task } from './pages/interfaces/Task.interface';
 import { TaskServiceService } from './pages/services/task-service.service';
 
 @Component({
@@ -15,24 +15,20 @@ import { TaskServiceService } from './pages/services/task-service.service';
 })
 export class AppComponent {
 
-  constructor(private taskService:TaskServiceService){
-
+  constructor(
+    private taskService:TaskServiceService
+  )
+    {}
+  
+  get tasks():Task[]{
+    return [...this.taskService.tasks]
   }
-  public tasks:Task[]=[{
-    task:"Learn Angular",
-    selectTask:"Completada"
-  },
-  {
-    task:"Learn React",
-    selectTask:"Pendiente"
-  }]
 
-  newtask(task:Task):void{
-    this.tasks.push(task)
-    console.log(this.tasks)
+  newTask(tasks:Task):void{
+    this.taskService.addTask(tasks)
   }
 
   deleteTask(id:number):void{
-    this.tasks.splice(id,1)
+    this.taskService.deleteTaskService(id)
   }
 }
