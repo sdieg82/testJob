@@ -28,7 +28,7 @@ export class AppComponent {
     this.taskService.addTask(tasks)
   }
 
-  deleteTask(id:number):void{
+  deleteTask(id:string):void{
     this.taskService.deleteTaskService(id)
   }
 }

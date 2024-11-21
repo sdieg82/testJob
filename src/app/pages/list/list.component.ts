@@ -12,15 +12,17 @@ import { CommonModule } from '@angular/common';
 export class ListComponent {
 
   @Output()
-  public onDeleteTask:EventEmitter<number>=new EventEmitter()
+  public onDeleteTask:EventEmitter<string>=new EventEmitter()
 
   @Input()
   public listTask:Task[]=[{
+    id:"",
     task:"",
     selectTask:""
   }]
 
-  deleteTask(id:number):void{
+  deleteTask(id?:string):void{
+    if(!id)return
     this.onDeleteTask.emit(id)
   }
 
