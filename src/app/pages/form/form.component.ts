@@ -19,21 +19,20 @@ export class FormComponent {
   private fb=inject(FormBuilder)
   
   @Output()
-  public newtask:EventEmitter<Task>=new EventEmitter();
+  public newTask:EventEmitter<Task>=new EventEmitter();
   public myForm:FormGroup=this.fb.group({
-    task:['',[Validators.required,Validators.minLength(4)]],
-    selectTask:['',[Validators.required,Validators.minLength(4)]]
+    task:['',[Validators.required,Validators.minLength(6)]],
+    selectTask:['',[Validators.required,Validators.minLength(6)]],
   })
-  
 
   submit():void{
-    this.newtask.emit(this.myForm.value)
+    this.newTask.emit(this.myForm.value)
     Swal.fire({
       title: 'Correcto!',
       text: 'Tarea registrada exitosamente !',
       icon: 'success',
       confirmButtonText: 'Ok'
     })
-    this.myForm.reset()
+    this.myForm.reset({task:'',selectTask:''})
   }
 }
