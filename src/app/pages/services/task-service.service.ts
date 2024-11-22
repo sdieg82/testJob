@@ -64,7 +64,7 @@ export class TaskServiceService {
   // Filtrar tareas según la opción seleccionada
   getTaskByOption(option: string): Task[] {
     if (option === 'Todas') {
-      this.filteredTasks = [...this.tasks];
+      this.filteredTasks = this.tasks
     } else {
       this.filteredTasks = this.tasks.filter((task) => task.selectTask === option);
     }
