@@ -1,6 +1,7 @@
 import { Component,EventEmitter,Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { Task } from '../../interfaces/Task.interface';
+import { OptionTaskInterface, Task } from '../../interfaces/Task.interface';
 import { CommonModule } from '@angular/common';
+import { TaskServiceService } from '../../services/task-service.service';
 
 @Component({
   selector: 'app-list',
@@ -9,27 +10,25 @@ import { CommonModule } from '@angular/common';
   templateUrl: './list.component.html',
   styleUrl: './list.component.css'
 })
-export class ListComponent implements OnInit, OnChanges {
+export class ListComponent {
+ 
+  constructor(private taskService:TaskServiceService){}
+  
+ 
   @Output()
   public onDeleteTask: EventEmitter<string> = new EventEmitter();
+
+  @Output()
+  public selectTask: EventEmitter<any> = new EventEmitter();
+
 
   @Input()
   public listTask: Task[] = [
     { id: "", task: "", selectTask: "" }
   ];
 
-  public filteredTasks: Task[] = [];
-
-  public selectTask: string[] = ['Completadas', 'Pendientes'];
-
-  ngOnInit(): void {
-    this.filteredTasks = [...this.listTask]; // Mostrar todas las tareas por defecto
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['listTask']) {
-      this.filteredTasks = [...this.listTask];
-    }
+  get options():OptionTaskInterface[]{
+    return this.taskService.options
   }
 
   deleteTask(id?: string): void {
@@ -37,19 +36,11 @@ export class ListComponent implements OnInit, OnChanges {
     this.onDeleteTask.emit(id);
   }
 
-  onFilterTask(event: Event): void {
-    const target = event.target as HTMLSelectElement | null;
-
-    if (target && target.value) {
-      const taskTitle = target.value;
-
-      if (taskTitle === 'Completadas') {
-        this.filteredTasks = this.listTask.filter(task => task.selectTask === 'Completadas');
-      } else if (taskTitle === 'Pendientes') {
-        this.filteredTasks = this.listTask.filter(task => task.selectTask === 'Pendientes');
-      } else {
-        this.filteredTasks = [...this.listTask]; // Mostrar todas las tareas
-      }
-    }
+  getTaskByOption(event:Event):void{
+    const selectedValue = (event.target as HTMLSelectElement).value; // Obtiene el valor seleccionado
+    console.log('Este es el seleccionado', selectedValue)
+    this.selectTask.emit(selectedValue)
   }
+
+  
 }

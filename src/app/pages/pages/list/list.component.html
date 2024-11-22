@@ -2,11 +2,11 @@
 <hr />
 
 <div class="mb-2">
-  <select (change)="onFilterTask($event)" name="" id="" class="form-select">
-    <option class="text-center" value="" disabled selected >------Listar tareas------</option>
-    <option class="text-center" value="Todas" > Todas  </option>
-    <option class="text-center" value="Completadas" > Completadas  </option>
-    <option class="text-center" value="Pendientes" > Pendientes  </option>
+  <select (change)="getTaskByOption($event)" name="" id="" class="form-select">
+    <option class="text-center" value="" disabled selected>
+      ------Listar tareas------
+    </option>
+    <option  *ngFor="let option of options" class="text-center" [value]="option">{{option}}</option>
   </select>
 </div>
 <div class="row-2 mt-3">

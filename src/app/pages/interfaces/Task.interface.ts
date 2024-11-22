@@ -6,3 +6,9 @@ export interface Task{
     task:string,
     selectTask:string
 }
+
+export enum OptionTaskInterface{
+    Todas='Todas',
+    Completada='Completada',
+    Pendiente='Pendiente',
+}

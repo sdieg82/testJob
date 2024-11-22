@@ -31,4 +31,9 @@ export class AppComponent {
   deleteTask(id:string):void{
     this.taskService.deleteTaskService(id)
   }
+
+  getTaskByOption(option:string):void{
+    console.log('Llega asi la optcion',option)
+    this.taskService.getTaskByOption(option)
+  }
 }
