@@ -1,0 +1,35 @@
+<h2>Tareas listadas</h2>
+<hr />
+
+<div class="mb-2">
+  <select (change)="onFilterTask($event)" name="" id="" class="form-select">
+    <option class="text-center" value="" disabled selected >------Listar tareas------</option>
+    <option class="text-center" value="Todas" > Todas  </option>
+    <option class="text-center" value="Completadas" > Completadas  </option>
+    <option class="text-center" value="Pendientes" > Pendientes  </option>
+  </select>
+</div>
+<div class="row-2 mt-3">
+  <ul class="list-group">
+    <label for="" class="mb-2">Tarea</label>
+    <li
+      class="d-flex mb-2 justify-content-between align-items-center list-group-item"
+      *ngFor="let task of listTask; let i = index"
+    >
+      {{ task.task }}
+      <button
+        class="btn"
+        disabled
+        [ngClass]="
+          task.selectTask === 'Completada' ? 'btn btn-success' : 'btn-warning'
+        "
+      >
+        {{ task.selectTask }}
+      </button>
+
+      <button class="btn btn-danger text-white" (click)="deleteTask(task.id)">
+        X
+      </button>
+    </li>
+  </ul>
+</div>
