@@ -17,19 +17,36 @@
       *ngFor="let task of listTask; let i = index"
     >
       {{ task.task }}
+      
       <button
-        class="btn"
-        disabled
-        [ngClass]="
-          task.selectTask === 'Completada' ? 'btn btn-success' : 'btn-warning'
-        "
-      >
-        {{ task.selectTask }}
-      </button>
-
+      class="btn"
+      disabled
+      [ngClass]="
+        task.selectTask === 'Completada' ? 'btn btn-success' : 'btn-warning'
+      "
+    >
+      {{ task.selectTask }}
+    </button>
       <button class="btn btn-danger text-white" (click)="deleteTask(task.id)">
+        
         X
       </button>
     </li>
   </ul>
+</div>
+<div class="justify-content-center">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+
 </div>
