@@ -35,19 +35,26 @@ export class TaskServiceService {
     selectTask:"Pendiente"
   }]
 
+  public filteredTasks: Task[] = [...this.tasks];
+
+
   addTask(task:Task):void{
     const newTask:Task={id:uuid(),...task}
     this.tasks.push(newTask)
   }
 
-  deleteTaskService(id:string){
+  deleteTaskService(id:string):void{
     this.tasks=this.tasks.filter(task=>task.id!==id)
   }
 
-  getTaskByOption(option:string){
-    console.log('Enviando opcion para filtrar',option)
-    this.tasks=this.tasks.filter(task=>task.selectTask===option)
-    console.log(this.tasks)
+  getTaskByOption(option:string):Task[]{
+    if(option==='Todas'){
+      this.filteredTasks=this.tasks
+      console.log(this.filteredTasks)
+      return this.filteredTasks
+    }
+    this.filteredTasks=this.tasks.filter(task => task.selectTask === option);
+    return this.filteredTasks
   }
 }
 

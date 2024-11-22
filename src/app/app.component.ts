@@ -21,7 +21,7 @@ export class AppComponent {
     {}
   
   get tasks():Task[]{
-    return [...this.taskService.tasks]
+    return [...this.taskService.filteredTasks]
   }
 
   newTask(tasks:Task):void{
@@ -33,7 +33,7 @@ export class AppComponent {
   }
 
   getTaskByOption(option:string):void{
-    console.log('Llega asi la optcion',option)
+
     this.taskService.getTaskByOption(option)
   }
 }

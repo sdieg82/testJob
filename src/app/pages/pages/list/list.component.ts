@@ -19,7 +19,7 @@ export class ListComponent {
   public onDeleteTask: EventEmitter<string> = new EventEmitter();
 
   @Output()
-  public selectTask: EventEmitter<any> = new EventEmitter();
+  public selectTask: EventEmitter<string> = new EventEmitter();
 
 
   @Input()
@@ -38,8 +38,8 @@ export class ListComponent {
 
   getTaskByOption(event:Event):void{
     const selectedValue = (event.target as HTMLSelectElement).value; // Obtiene el valor seleccionado
-    console.log('Este es el seleccionado', selectedValue)
     this.selectTask.emit(selectedValue)
+   
   }
 
   
